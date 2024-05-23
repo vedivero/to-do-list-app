@@ -17,7 +17,7 @@ app.use("/api",indexRouter)
 //setting mongoose
 const mongoURI = `mongodb://localhost:27017/to-do-list-app`
 
-//connect db
+//DB 연결
 mongoose
     .connect(mongoURI).then(()=>{
         console.log("mongoose connected");

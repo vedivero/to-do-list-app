@@ -13,7 +13,7 @@ const taskSchema = Schema({
             required : true
         }
     },
-    {timestamps:true}
+    {timestamps:true}//응답 객체에 시간 정보를 표현
 );
 
 //model 생성 (몽구스에서 모델을 만들어 주는 기능)
