@@ -9,13 +9,11 @@ router.post('/',taskController.createTask);
 //할 일 리스트 읽어오기
 router.get('/',taskController.getTask);
 
-router.put('/:id',(req,res)=>{
-    res.send('update task')
-});
+//할 일 정보 수정
+router.put('/:id',taskController.updateTask);
 
-router.delete('/:id',(res,req)=>{
-    res.send('delete tasks')
-});
+//할 일 정보 삭제
+router.delete('/:id',taskController.deleteTask);
 
 //module을 내보내야 사용할 수 있다.
 module.exports = router;
