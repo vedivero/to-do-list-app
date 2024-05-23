@@ -19,11 +19,12 @@ const mongoURI = `mongodb://localhost:27017/to-do-list-app`
 
 //connect db
 mongoose
-    .connect(mongoURI, {useNewUrlParser:true}).then(()=>{
+    .connect(mongoURI).then(()=>{
         console.log("mongoose connected");
     }).catch((err)=>{
         console.log("DB connection fail");
-    })
+    });
+
 
 //app listener 설정
 //port number 5000을 주시, 모든 request가 5000으로 전달

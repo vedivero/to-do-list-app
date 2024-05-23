@@ -1,19 +1,22 @@
 //스키마를 정의하는 스크립트 파일
-
 const mongoose = require('mongoose')
-const schema = mongoose.schema
+const Schema = mongoose.Schema
 
-const taskSchema = schema({
-    task : {
-        type : String,
-        required : true
+//스키마 정의
+const taskSchema = Schema({
+        task : {
+            type : String,
+            required : true
+        },
+        isComplete : {
+            type : Boolean,
+            required : true
+        }
     },
-    isComplete : {
-        type : Boolean,
-        required : true
-    }
-})
+    {timestamps:true}
+);
 
-const Task = mongoose.model("Tast", taskSchema)
+//model 생성 (몽구스에서 모델을 만들어 주는 기능)
+const Task = mongoose.model("Task", taskSchema)
 
 module.exports = Task;
