@@ -2,6 +2,7 @@
 const express = require("express");
 //Mongoose 라이브러리를 사용할 수 있도록 설정
 const mongoose = require("mongoose");
+const cors = require("cors")
 //body-parser 라이브러리를 애플리케이션으로 가져오는 코드
 const bodyparser = require("body-parser")
 //app.js에서 index.js를 사용할 수 있도록 설정
@@ -11,6 +12,7 @@ const indexRouter = require("./routes/index")
 const app = express();
 //body-parser 미들웨어를 애플리케이션에 추가하여 JSON 형식의 요청 본문을 파싱하도록 설정
 app.use(bodyparser.json());
+app.use(cors());
 //app은 /api가 요청될 때 indexRouter를 사용
 app.use("/api",indexRouter)
 
