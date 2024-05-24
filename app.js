@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 //body-parser 라이브러리를 애플리케이션으로 가져오는 코드
 const bodyparser = require("body-parser")
 //app.js에서 index.js를 사용할 수 있도록 설정
-const indexRouter = require("./back-end/routes/index")
+const indexRouter = require("./routes/index")
 
 //Express 애플리케이션 인스턴스를 생성
 const app = express();
