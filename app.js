@@ -7,6 +7,8 @@ const cors = require("cors")
 const bodyparser = require("body-parser")
 //app.js에서 index.js를 사용할 수 있도록 설정
 const indexRouter = require("./routes/index")
+require('dotenv').config()
+const MONGODB_URI_PROD = process.env.MONGODB_URI_PROD
 
 //Express 애플리케이션 인스턴스를 생성
 const app = express();
@@ -17,19 +19,21 @@ app.use(cors());
 app.use("/api",indexRouter)
 
 //setting mongoose
-const mongoURI = `mongodb://localhost:27017/to-do-list-app`
+const mongoURI = MONGODB_URI_PROD;
 
 //DB 연결
 mongoose
     .connect(mongoURI).then(()=>{
         console.log("mongoose connected");
     }).catch((err)=>{
+        console.log(mongoURI);
         console.log("DB connection fail");
     });
 
 
 //app listener 설정
 //port number 5000을 주시, 모든 request가 5000으로 전달
-app.listen(5000, ()=>{
-    console.log("server on 5000");
+app.listen(process.env.PORT || 5000, ()=>{
+    console.log("process.env.PORT : ",process.env.PORT);
+    console.log("server ON");
 });
