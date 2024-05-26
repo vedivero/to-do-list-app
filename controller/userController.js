@@ -46,7 +46,7 @@ userController.loginWithEmail = async (req, res) => {
     try {
 
         const { email, password } = req.body;
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email }, "-createdAt -updatedAt -__v");
 
         if (user) {
             //DB 패스워드와, 클라이언트가 입력한 패스워드 비교
