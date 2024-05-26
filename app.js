@@ -27,13 +27,13 @@ mongoose
         console.log("mongoose connected");
     }).catch((err)=>{
         console.log(mongoURI);
+        console.error("MongoDB connection error: ", err);
         console.log("DB connection fail");
     });
-
 
 //app listener 설정
 //port number 5000을 주시, 모든 request가 5000으로 전달
 app.listen(process.env.PORT || 5000, ()=>{
-    console.log("process.env.PORT : ",process.env.PORT);
+    console.log("process.env.PORT : ", process.env.PORT);
     console.log("server ON");
 });
