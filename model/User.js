@@ -1,6 +1,9 @@
 //회원정보 스키마를 정의하는 파일
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const jwt = require('jsonwebtoken');
+require('dotenv').config()
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY
 
 const userSchema = Schema({
     name: {
@@ -11,11 +14,15 @@ const userSchema = Schema({
         type: String,
         required: true
     },
-    password:{
-        type:String,
-        required:true
+    password: {
+        type: String,
+        required: true
     }
-},{timestamps:true})
+}, { timestamps: true })
 
+userSchema.methods.generateToken = function () {
+    const token = jwt.sign({ _id: this._id }, JWT_SECRET_KEY);
+    return token
+}
 const User = mongoose.model("User", userSchema)
 module.exports = User;
