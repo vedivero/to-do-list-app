@@ -6,7 +6,8 @@ const taskController = {}; //taskController 객체를 초기화
 taskController.createTask = async (req, res) => {
     try {
         const { task, isComplete } = req.body; //요청 본문에서 task와 isComplete를 추출
-        const newTask = new Task({ task, isComplete }); //새로운 Task 인스턴스를 생성
+        const { userId } = req;
+        const newTask = new Task({ task, isComplete, author: userId }); //새로운 Task 인스턴스를 생성
         await newTask.save(); //새로운 Task를 데이터베이스에 저장
         res.status(200).json({ status: 'success-create', data: newTask }); //성공 응답 전송
     } catch (error) {

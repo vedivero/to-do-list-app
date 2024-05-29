@@ -11,6 +11,11 @@ const taskSchema = Schema({
         isComplete : {
             type : Boolean,
             required : true
+        },
+        author : {
+            type : Schema.Types.ObjectId,
+            require : true,
+            ref : "User"       //User라는 모델은 참조한다.
         }
     },
     {timestamps:true}//응답 객체에 시간 정보를 표현
