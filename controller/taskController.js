@@ -18,7 +18,8 @@ taskController.createTask = async (req, res) => {
 //할 일 목록 조회
 taskController.getTask = async (req, res) => {
     try {
-        const taskList = await Task.find({}).select("-__v"); //모든 Task를 가져오고 '__v' 필드를 제외
+        //const taskList = await Task.find({}).select("-__v"); //모든 Task를 가져오고 '__v' 필드를 제외
+        const taskList = await Task.find({}).populate("author");
         res.status(200).json({ status: 'success-get', data: taskList }); //성공 응답 전송
     } catch (error) {
         res.status(400).json({ status: 'fail-get', error: error }); //에러 응답 전송
