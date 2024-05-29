@@ -27,7 +27,7 @@ mongoose
         console.log("mongoose connected");
     }).catch((err)=>{
         console.log(mongoURI);
-        console.error("MongoDB connection error: ", err);
+        console.error("MongoDB connection error : ", err);
         console.log("DB connection fail");
     });
 

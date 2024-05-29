@@ -1,0 +1,32 @@
+const authController = {};
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
+
+//token검증
+authController.authenticate = (req, res, next) => {
+    try {
+        //Bearer dfjglksdjglergegx
+        const tokenString = req.headers.authorization;
+        //token String이 없는 경우
+        if (!tokenString) {
+            throw new Error("Invalid Token");
+        }
+        //token 가져오기
+        const token = tokenString.replace("Bearer ", "");
+        jwt.verify(token, JWT_SECRET_KEY, (error, payload) => {
+
+            if (error) {
+                throw new Error("invalid token");
+            }
+            req.userId = payload._id;
+
+        });
+        next();
+
+    } catch (error) {
+        response.status(400).json({ status: "fail", message: error.message });
+    }
+}
+
+module.exports = authController;

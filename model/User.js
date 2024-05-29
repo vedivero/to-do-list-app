@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 const userSchema = Schema({
     name: {
@@ -18,14 +18,16 @@ const userSchema = Schema({
         type: String,
         required: true
     }
-}, { timestamps: true }
-);
+}, { timestamps: true });
 
 //몽구스에서 제공하는 함수 object가 json으로 바뀔 때 호출하는 함수
 userSchema.methods.toJSON = function () {
     const obj = this._doc;
     //password는 언제든지 지워서 전달한다.
     delete obj.password;
+    delete obj.updatedAt;
+    delete obj.createdAt;
+    delete obj.__v;
     return obj;
 };
 

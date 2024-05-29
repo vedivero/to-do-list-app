@@ -2,7 +2,7 @@ const User = require("../model/User");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-const userController = {}
+const userController = {};
 
 //회원가입 = user 생성
 userController.createUser = async (req, res) => {
@@ -59,9 +59,23 @@ userController.loginWithEmail = async (req, res) => {
         }
         throw new Error("아이디 또는 비밀번호가 일치하지 않습니다.");
     } catch (error) {
-        res.status(400).json({ status: "login fail", message: error.message });
+        res.status(400).json({ status: "Login fail", message: error.message });
     }
 }
 
+userController.getUser = async (req, res) => {
+    try {
+
+        const { userId } = req;
+        const user = await User.findById(userId);
+
+        if (!user) {
+            throw new Error("Can not find user");
+        }
+        res.status(200).json({ status: "Success get user : ", user });
+    } catch (error) {
+        res.status(400).json({ status: "Fail get user  : ", message: error.message });
+    }
+}
 
 module.exports = userController
